@@ -2,6 +2,7 @@ package com.example.joole.controller;
 
 import com.example.joole.model.Product;
 import com.example.joole.repository.ProductRepository;
+import com.example.joole.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +13,17 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     //get all products
     @GetMapping("/product")
     public List<Product> getAllProducts(){
-        return productRepository.findAll();
+        return productService.findProducts();
     }
 
     @PostMapping
     public Product createProduct(@RequestBody Product product){
-        return productRepository.save(product);
+        return productService.createProduct(product);
     }
 
 }
