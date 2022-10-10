@@ -1,10 +1,7 @@
 package com.example.joole;
 
-import com.example.joole.model.User;
-import com.example.joole.service.ProjectService;
-import com.example.joole.service.UserService;
-import org.aspectj.lang.annotation.Before;
-import org.junit.jupiter.api.BeforeAll;
+import com.example.joole.service.Impl.ProjectServiceImpl;
+import com.example.joole.service.Impl.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,10 +10,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 class JooleApplicationTests {
 
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @Autowired
-    ProjectService projectService;
+    ProjectServiceImpl projectService;
 
     @Test
     void contextLoads() {

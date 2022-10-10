@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "technicalDetails")
-public class TechnicalDetails {
+public class TechnicalDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,11 +25,11 @@ public class TechnicalDetails {
     @JsonIgnore
     private Product product;
 
-    public TechnicalDetails() {
+    public TechnicalDetail() {
 
     }
 
-    public TechnicalDetails(long id, int airflow, int power, int operatingVoltage, int fanSpeed,Product product) {
+    public TechnicalDetail(long id, int airflow, int power, int operatingVoltage, int fanSpeed, Product product) {
         this.id = id;
         this.airflow = airflow;
         this.power = power;
