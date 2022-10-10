@@ -25,11 +25,12 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String userName, String userType, String userPassword) {
+    public User(Long id, String userName, String userType, String userPassword, Set<Project> userProject) {
         this.id = id;
         this.userName = userName;
         this.userType = userType;
         this.userPassword = userPassword;
+        this.userProject = userProject;
     }
 
     public Long getId() {
@@ -79,7 +80,6 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", userType='" + userType + '\'' +
                 ", userPassword='" + userPassword + '\'' +
-                ", userProject=" + userProject +
                 '}';
     }
 }

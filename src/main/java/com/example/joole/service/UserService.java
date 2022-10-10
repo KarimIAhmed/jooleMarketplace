@@ -4,17 +4,33 @@ import com.example.joole.model.Product;
 import com.example.joole.model.User;
 import com.example.joole.repository.ProductRepository;
 import com.example.joole.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class UserService {
+    @Autowired
     private UserRepository userRepository;
 
-    public User saveUser(User user){
-        return userRepository.save(user);
+    public User findOneById(Long id){
+        return userRepository.findById(id).orElse(null);
     }
+
+    @Transactional
+    public void createUser(int num){
+        for(int i = 0; i < num; i++){
+            User user = new User();
+            user.setUserName("tengyang"+i);
+            user.setUserType("customer");
+            user.setUserPassword("123456");
+            System.out.println(user);
+            userRepository.save(user);
+        }
+    }
+
 
     public List<User> getUser(){
         return userRepository.findAll();
@@ -26,20 +42,4 @@ public class UserService {
     }
 
 
-
-//////////////////////////////////////////////////////////////////////////////
-
-    private List<User> users;
-
-    public void addUser(User user) {
-        users.add(user);
-    }
-
-    public List<User> getAllUsers() {
-        return users;
-    }
-
-    public User getUser(long id){
-        return users.stream().filter(c-> c.getId() == id).findFirst().get();
-    }
 }
