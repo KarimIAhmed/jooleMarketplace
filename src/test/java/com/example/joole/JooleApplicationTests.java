@@ -1,6 +1,7 @@
 package com.example.joole;
 
 import com.example.joole.model.User;
+import com.example.joole.service.ProjectService;
 import com.example.joole.service.UserService;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,6 +15,9 @@ class JooleApplicationTests {
     @Autowired
     UserService userService;
 
+    @Autowired
+    ProjectService projectService;
+
     @Test
     void contextLoads() {
     }
@@ -24,6 +28,13 @@ class JooleApplicationTests {
         userService.createUser(3);
 
         System.out.println(userService.getUser());
+    }
+
+    @Test
+    public void projectServiceTest(){
+        projectService.createProject(userService.findOneById(1L));
+
+        System.out.println(projectService.getProject());
     }
 
 }

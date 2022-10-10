@@ -57,7 +57,6 @@ public class Project {
         return "Project{" +
                 "projectId=" + projectId +
                 ", user=" + user +
-                ", projectProductSet=" + projectProductSet +
                 '}';
     }
 }
