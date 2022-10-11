@@ -1,5 +1,7 @@
 package com.example.joole.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -19,7 +21,7 @@ public class User {
     @Column(name = "user_password")
     private String userPassword;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Project> userProject;
 
     public User() {
@@ -80,6 +82,7 @@ public class User {
                 ", userName='" + userName + '\'' +
                 ", userType='" + userType + '\'' +
                 ", userPassword='" + userPassword + '\'' +
+                ", userProject=" + userProject +
                 '}';
     }
 }

@@ -1,10 +1,17 @@
 package com.example.joole;
 
-import com.example.joole.service.Impl.ProjectServiceImpl;
-import com.example.joole.service.Impl.UserServiceImpl;
+import com.example.joole.model.Product;
+import com.example.joole.model.Project;
+import com.example.joole.model.ProjectProduct;
+import com.example.joole.model.User;
+import com.example.joole.service.implementation.ProjectServiceImpl;
+import com.example.joole.service.implementation.UserServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @SpringBootTest
 class JooleApplicationTests {
@@ -21,17 +28,71 @@ class JooleApplicationTests {
 
     @Test
     public void userServiceTest(){
+        //Create a user object
+        User user = new User();
+        user.setUserName("Tengyang Zhang");
+        user.setUserType("Customer");
+        user.setUserPassword("123456");
+        user.setId(1L);
 
-        userService.createUser(3);
+        //Create three project obj
+        Project project1 = new Project();
+        project1.setUser(user);
 
-        System.out.println(userService.getUser());
+        Project project2 = new Project();
+        project2.setUser(user);
+
+        Project project3 = new Project();
+        project3.setUser(user);
+
+        //Create a userProject set
+        Set<Project> userProjectSet = new HashSet<>();
+        userProjectSet.add(project1);
+        userProjectSet.add(project2);
+        userProjectSet.add(project3);
+
+        //Set the userProject set to user
+        user.setUserProject(userProjectSet);
+
+        //Create user
+        userService.createUser(user);
+
+        //Create a product
+        Product product = new Product();
+        product.setProductBrand("Nike");
+        product.setCertification("Certification of Nike!");
+
+        //Create projectProduct obj
+        ProjectProduct projectProduct = new ProjectProduct();
+        projectProduct.setProduct(product);
+        projectProduct.setProject(project1);
+
+
+
+        //Create projectProduct set
+        Set<ProjectProduct> projectProductSet = new HashSet<>();
+        projectProductSet.add(projectProduct);
+
+        //set projectProduct set to project1
+        project1.setProjectProductSet(projectProductSet);
+
+        //Set projectProduct set to product
+        product.setProjectProductSet(projectProductSet);
+
+        //Find user by ID
+        System.out.println(userService.findOneByID(1L));
+
+        //Find user by containing str
+        System.out.println(userService.findAllByUserNameContaining("Teng"));
+
+
     }
 
     @Test
     public void projectServiceTest(){
-        projectService.createProject(userService.findOneById(1L));
 
-        System.out.println(projectService.getProject());
+        //Find project by username
+        System.out.println("Find all projects of user Tengyang Zhang: " + projectService.findProjectsByUserName("Tengyang Zhang"));
     }
 
 }

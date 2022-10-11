@@ -56,7 +56,7 @@ public class Project {
     public String toString() {
         return "Project{" +
                 "projectId=" + projectId +
-                ", user=" + user +
+                ", user name=" + user.getUserName() +
                 '}';
     }
 }

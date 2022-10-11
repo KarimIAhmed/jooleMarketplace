@@ -5,10 +5,11 @@ import com.example.joole.model.Product;
 import java.util.List;
 
 public interface ProductService {
+    List<Product> findProductsByProductBrand(String brand);
 
-    Product createProduct(Product product);
-    List<Product> findProducts();
-    Product findProductById(Long Id);
+    Product saveProduct(Product product);
+
+    List<Product> getProducts();
+
     String deleteProduct(long id);
-
 }
