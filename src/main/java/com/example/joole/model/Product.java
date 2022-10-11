@@ -23,8 +23,7 @@ public class Product {
     @JoinColumn(name = "description_id",referencedColumnName = "id")
     private Description description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tech_id",referencedColumnName = "id")
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = TechnicalDetail.class)
     private TechnicalDetail technicalDetail;
 
     @OneToOne(cascade = CascadeType.ALL)

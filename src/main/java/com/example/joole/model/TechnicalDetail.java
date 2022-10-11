@@ -19,7 +19,7 @@ public class TechnicalDetail {
     @Column(name = "fanSpeed")
     private int fanSpeed;
 
-    @OneToOne(mappedBy="technicalDetails",
+    @OneToOne(mappedBy="technicalDetail",
             cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
                     CascadeType.REFRESH})
     @JsonIgnore

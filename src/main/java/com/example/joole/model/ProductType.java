@@ -18,14 +18,14 @@ public class ProductType {
     @Column(name = "type")
     private String type;
 
-    @Column(name = "mountain_location")
-    private String mountain_location;
+    @Column(name = "mountingLocation")
+    private String mountingLocation;
 
     @Column(name = "accessories")
     private String accessories;
 
-    @Column(name = "model_year")
-    private String model_year;
+    @Column(name = "modelYear")
+    private int modelYear;
 
     @OneToOne(mappedBy="productType",
             cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
@@ -37,13 +37,13 @@ public class ProductType {
 
     }
 
-    public ProductType(long id, String application, String type, String mountain_location, String accessories, String model_year, Product product) {
+    public ProductType(long id, String application, String type, String mountingLocation, String accessories, String model_year, Product product) {
         this.id = id;
         this.application = application;
         this.type = type;
-        this.mountain_location = mountain_location;
+        this.mountingLocation = mountingLocation;
         this.accessories = accessories;
-        this.model_year = model_year;
+        this.modelYear = modelYear;
         this.product = product;
     }
 
@@ -71,12 +71,12 @@ public class ProductType {
         this.type = type;
     }
 
-    public String getMountain_location() {
-        return mountain_location;
+    public String getMountingLocation() {
+        return mountingLocation;
     }
 
-    public void setMountain_location(String mountain_location) {
-        this.mountain_location = mountain_location;
+    public void setMountingLocation(String mountain_location) {
+        this.mountingLocation = mountingLocation;
     }
 
     public String getAccessories() {
@@ -87,12 +87,12 @@ public class ProductType {
         this.accessories = accessories;
     }
 
-    public String getModel_year() {
-        return model_year;
+    public int getmodelYear() {
+        return modelYear;
     }
 
-    public void setModel_year(String model_year) {
-        this.model_year = model_year;
+    public void setmodelYear(int modelYear) {
+        this.modelYear = modelYear;
     }
 
     public Product getProduct() {
@@ -109,9 +109,9 @@ public class ProductType {
                 "id=" + id +
                 ", application='" + application + '\'' +
                 ", type='" + type + '\'' +
-                ", mountain_location='" + mountain_location + '\'' +
+                ", mountingLocation='" + mountingLocation + '\'' +
                 ", accessories='" + accessories + '\'' +
-                ", model_year='" + model_year + '\'' +
+                ", modelYear='" + modelYear + '\'' +
                 ", product=" + product +
                 '}';
     }
