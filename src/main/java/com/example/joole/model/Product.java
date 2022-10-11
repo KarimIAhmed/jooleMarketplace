@@ -25,7 +25,7 @@ public class Product {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tech_id",referencedColumnName = "id")
-    private TechnicalDetail technicalDetail;
+    private TechnicalDetails technicalDetails;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "prodType_id",referencedColumnName = "id")
@@ -35,13 +35,13 @@ public class Product {
 
     }
 
-    public Product(long id, String productBrand, String certification, Set<ProjectProduct> projectProductSet, Description description, TechnicalDetail technicalDetail, ProductType productType) {
+    public Product(long id, String productBrand, String certification, Set<ProjectProduct> projectProductSet, Description description, TechnicalDetails technicalDetails, ProductType productType) {
         this.id = id;
         this.productBrand = productBrand;
         this.certification = certification;
         this.projectProductSet = projectProductSet;
         this.description = description;
-        this.technicalDetail = technicalDetail;
+        this.technicalDetails = technicalDetails;
         this.productType = productType;
     }
 
@@ -78,12 +78,12 @@ public class Product {
         this.description = description;
     }
 
-    public TechnicalDetail getTechnicalDetails() {
-        return technicalDetail;
+    public TechnicalDetails getTechnicalDetails() {
+        return technicalDetails;
     }
 
-    public void setTechnicalDetails(TechnicalDetail technicalDetail) {
-        this.technicalDetail = technicalDetail;
+    public void setTechnicalDetails(TechnicalDetails technicalDetails) {
+        this.technicalDetails = technicalDetails;
     }
 
     public ProductType getProductType() {
@@ -110,7 +110,7 @@ public class Product {
                 ", certification='" + certification + '\'' +
                 ", projectProductSet=" + projectProductSet +
                 ", description=" + description +
-                ", technicalDetails=" + technicalDetail +
+                ", technicalDetails=" + technicalDetails +
                 ", productType=" + productType +
                 '}';
     }

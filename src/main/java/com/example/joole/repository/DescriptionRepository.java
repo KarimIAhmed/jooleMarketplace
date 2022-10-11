@@ -8,6 +8,9 @@ import java.util.Optional;
 public interface DescriptionRepository extends JpaRepository<Description,Long> {
 
     Optional<Description> findById(long id);
-    Optional<Description> findByIdAndManufacturer(long id,String manufacturer);
+    Description findByIdAndManufacturer(long id,String manufacturer);
+
+    
+
 
 }
