@@ -25,6 +25,7 @@ class DescriptionServiceImplTest {
         description.setManufacturer("Nike Manufacturer");
         description.setModel("Nike Model");
         description.setSeries("Nike Series");
+        description.setProduct(productService.findProductById(1L));
 
         descriptionService.saveDescription(description);
         System.out.println("Successful save the description: " + description);

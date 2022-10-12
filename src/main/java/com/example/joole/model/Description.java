@@ -20,9 +20,9 @@ public class Description {
     @Column(name = "model")
     private String model;
 
-    @OneToOne(mappedBy="description",
-            cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-                    CascadeType.REFRESH})
+
+    @OneToOne
+    @JoinColumn(name = "id")
     private Product product;
 
 
