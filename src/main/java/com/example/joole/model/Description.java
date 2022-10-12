@@ -85,7 +85,7 @@ public class Description {
                 ", manufacturer='" + manufacturer + '\'' +
                 ", series='" + series + '\'' +
                 ", model='" + model + '\'' +
-                ", product=" + product +
+                ", productId=" + product +
                 '}';
     }
 }

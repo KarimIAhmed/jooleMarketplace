@@ -26,4 +26,9 @@ public class TechnicalDetailServiceImpl implements TechnicalDetailService {
         return "Technical Detail " + id + " has been removed";
     }
 
+    @Override
+    public TechnicalDetails findTechnicalDetailById(Long id) {
+        return technicalDetailsRepository.findById(id).orElse(null);
+    }
+
 }

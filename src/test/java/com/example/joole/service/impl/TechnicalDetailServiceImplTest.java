@@ -13,6 +13,9 @@ class TechnicalDetailServiceImplTest {
     @Autowired
     TechnicalDetailServiceImpl technicalDetailService;
 
+    @Autowired
+    ProductServiceImpl productService;
+
     @Test
     void saveTechnicalDetails() {
         TechnicalDetails technicalDetails = new TechnicalDetails();
@@ -20,6 +23,7 @@ class TechnicalDetailServiceImplTest {
         technicalDetails.setFanSpeed(50);
         technicalDetails.setPower(110);
         technicalDetails.setOperatingVoltage(3);
+        technicalDetails.setProduct(productService.findProductById(7L));
 
         technicalDetailService.saveTechnicalDetails(technicalDetails);
     }

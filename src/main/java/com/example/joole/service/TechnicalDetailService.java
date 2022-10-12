@@ -10,4 +10,6 @@ public interface TechnicalDetailService {
     List<TechnicalDetails> getTechnicalDetails();
 
     String deleteTechnicalDetails(long id);
+
+    TechnicalDetails findTechnicalDetailById(Long id);
 }

@@ -24,8 +24,10 @@ class ProductTypeServiceImplTest {
         productType.setAccessories("shoelace");
         productType.setModel_year("2020");
         productType.setMountain_location("LA");
+        productType.setProduct(productService.findProductById(7L));
 
         productTypeService.saveProductType(productType);
+        System.out.println("Successful save productType: " + productType);
     }
 
     @Test

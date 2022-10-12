@@ -19,16 +19,16 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ProjectProduct> projectProductSet;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "id")
     private Description description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tech_id",referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "id")
     private TechnicalDetails technicalDetails;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "prodType_id",referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "id")
     private ProductType productType;
 
     public Product() {
@@ -109,9 +109,9 @@ public class Product {
                 ", productBrand='" + productBrand + '\'' +
                 ", certification='" + certification + '\'' +
                 ", projectProductSet=" + projectProductSet +
-                ", description=" + description +
-                ", technicalDetails=" + technicalDetails +
-                ", productType=" + productType +
+                ", descriptionId=" + description +
+                ", technicalDetailsId=" + technicalDetails.getId() +
+                ", productTypeId=" + productType.getId() +
                 '}';
     }
 }

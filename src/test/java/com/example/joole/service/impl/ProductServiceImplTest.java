@@ -1,7 +1,6 @@
 package com.example.joole.service.impl;
 
-import com.example.joole.model.Product;
-import com.example.joole.model.ProjectProduct;
+import com.example.joole.model.*;
 import com.example.joole.service.ProjectProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +28,48 @@ class ProductServiceImplTest {
     @Autowired
     com.example.joole.service.implementation.DescriptionServiceImpl descriptionService;
 
+    @Autowired
+    ProductTypeServiceImpl productTypeService;
+
+    @Autowired
+    TechnicalDetailServiceImpl technicalDetailService;
+
     @Test
     void saveProduct() {
         //Create product
         Product product = new Product();
         product.setProductBrand("Nike");
         product.setCertification("Nike Certification");
-        product.setDescription(descriptionService.findById(1L));
+
+        //Create Description
+        Description description = new Description();
+        description.setSeries("Nike Series");
+        description.setModel("Nike Model");
+        description.setManufacturer("Nike Manufacturer");
+        descriptionService.saveDescription(description);
+
+        product.setDescription(description);
+
+        //Create TechnicalDetail
+        TechnicalDetails technicalDetails = new TechnicalDetails();
+        technicalDetails.setPower(110);
+        technicalDetails.setFanSpeed(100);
+        technicalDetails.setAirflow(156);
+        technicalDetails.setOperatingVoltage(358);
+        technicalDetailService.saveTechnicalDetails(technicalDetails);
+
+        product.setTechnicalDetails(technicalDetails);
+
+        //Create ProductType
+        ProductType productType = new ProductType();
+        productType.setType("Sneaker");
+        productType.setMountain_location("Mountain_Location");
+        productType.setAccessories("Accessories");
+        productType.setModel_year("2022");
+        productType.setApplication("Application");
+        productTypeService.saveProductType(productType);
+
+        product.setProductType(productType);
 
         //Create projectProduct
         ProjectProduct projectProduct = new ProjectProduct();
@@ -51,6 +85,10 @@ class ProductServiceImplTest {
 
         //save product
         productService.saveProduct(product);
+
+        //update description
+//        Description description1 = descriptionService.findDescriptionByProductId(21L);
+//        description1.setProduct(productService.findProductById(21L));
 
         System.out.println("Successful Save the product: " + product);
     }

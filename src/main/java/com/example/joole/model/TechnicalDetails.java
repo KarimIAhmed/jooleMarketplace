@@ -19,10 +19,8 @@ public class TechnicalDetails {
     @Column(name = "fanSpeed")
     private int fanSpeed;
 
-    @OneToOne(mappedBy="technicalDetails",
-            cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-                    CascadeType.REFRESH})
-    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "id")
     private Product product;
 
     public TechnicalDetails() {

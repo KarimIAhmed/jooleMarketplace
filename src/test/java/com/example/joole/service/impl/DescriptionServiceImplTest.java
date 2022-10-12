@@ -25,7 +25,7 @@ class DescriptionServiceImplTest {
         description.setManufacturer("Nike Manufacturer");
         description.setModel("Nike Model");
         description.setSeries("Nike Series");
-        description.setProduct(productService.findProductById(1L));
+        description.setProduct(productService.findProductById(7L));
 
         descriptionService.saveDescription(description);
         System.out.println("Successful save the description: " + description);
@@ -33,7 +33,7 @@ class DescriptionServiceImplTest {
 
     @Test
     void findDescriptionByProductId() {
-        System.out.println("The description of product 1 is: " + descriptionService.findDescriptionByProductId(1L));
+        System.out.println("The description of product 7 is: " + descriptionService.findDescriptionByProductId(7L));
     }
 
     @Test

@@ -26,4 +26,9 @@ public class ProductTypeServiceImpl implements ProductTypeService {
         productTypeRepository.deleteById(id);
         return "product type " + id + " has been removed";
     }
+
+    @Override
+    public ProductType findProductById(Long id) {
+        return productTypeRepository.findById(id).orElse(null);
+    }
 }

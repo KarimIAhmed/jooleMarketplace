@@ -27,10 +27,8 @@ public class ProductType {
     @Column(name = "model_year")
     private String model_year;
 
-    @OneToOne(mappedBy="productType",
-            cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-                    CascadeType.REFRESH})
-    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "id")
     private Product product;
 
     public ProductType(){
@@ -112,7 +110,7 @@ public class ProductType {
                 ", mountain_location='" + mountain_location + '\'' +
                 ", accessories='" + accessories + '\'' +
                 ", model_year='" + model_year + '\'' +
-                ", product=" + product +
+                ", productId=" + product.getId() +
                 '}';
     }
 }

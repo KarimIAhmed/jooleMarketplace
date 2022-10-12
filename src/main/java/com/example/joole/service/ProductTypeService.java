@@ -10,4 +10,6 @@ public interface ProductTypeService {
     List<ProductType> getProductTypes();
 
     String deleteProductType(long id);
+
+    ProductType findProductById(Long id);
 }

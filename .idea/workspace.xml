@@ -7,7 +7,24 @@
     <list default="true" id="826725a9-5b4a-4feb-a912-e2e8f2bf9e19" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/model/Description.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/model/Description.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/model/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/model/ProductType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/model/TechnicalDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/model/TechnicalDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/service/ProductTypeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/service/ProductTypeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/service/TechnicalDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/service/TechnicalDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/service/impl/ProductTypeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/service/impl/ProductTypeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/joole/service/impl/TechnicalDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/joole/service/impl/TechnicalDetailServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/DescriptionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/DescriptionServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/ProductServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/ProductServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/ProductTypeServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/ProductTypeServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/TechnicalDetailServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/TechnicalDetailServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/joole/service/impl/UserServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/joole/model/Description.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/joole/model/Description.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/joole/model/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/joole/model/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/joole/model/ProductType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/joole/model/ProductType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/joole/model/TechnicalDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/joole/model/TechnicalDetails.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,8 +105,8 @@
       <recent name="com.example.joole.service.impl" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.DescriptionServiceImplTest.saveDescription">
-    <configuration name="DescriptionServiceImplTest.saveDescription" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserServiceImplTest.findOneByID">
+    <configuration name="ProductServiceImplTest.saveProduct" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joole" />
       <extension name="coverage">
         <pattern>
@@ -98,14 +115,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.joole.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.example.joole.service.impl.DescriptionServiceImplTest" />
-      <option name="METHOD_NAME" value="saveDescription" />
+      <option name="MAIN_CLASS_NAME" value="com.example.joole.service.impl.ProductServiceImplTest" />
+      <option name="METHOD_NAME" value="saveProduct" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TechnicalDetailServiceImplTest.deleteTechnicalDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProjectServiceImplTest.findProjectsByUserName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="joole" />
       <extension name="coverage">
         <pattern>
@@ -114,8 +131,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.example.joole.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="com.example.joole.service.impl.TechnicalDetailServiceImplTest" />
-      <option name="METHOD_NAME" value="deleteTechnicalDetails" />
+      <option name="MAIN_CLASS_NAME" value="com.example.joole.service.impl.ProjectServiceImplTest" />
+      <option name="METHOD_NAME" value="findProjectsByUserName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -171,9 +188,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DescriptionServiceImplTest.saveDescription" />
         <item itemvalue="JUnit.UserServiceImplTest.findOneByID" />
-        <item itemvalue="JUnit.TechnicalDetailServiceImplTest.deleteTechnicalDetails" />
+        <item itemvalue="JUnit.ProjectServiceImplTest.findProjectsByUserName" />
+        <item itemvalue="JUnit.ProductServiceImplTest.saveProduct" />
         <item itemvalue="JUnit.TechnicalDetailServiceImplTest.getTechnicalDetails" />
         <item itemvalue="JUnit.TechnicalDetailServiceImplTest.saveTechnicalDetails" />
       </list>
@@ -190,7 +207,7 @@
       <workItem from="1665512477585" duration="239000" />
       <workItem from="1665512799417" duration="2145000" />
       <workItem from="1665517725974" duration="13220000" />
-      <workItem from="1665591993862" duration="2187000" />
+      <workItem from="1665591993862" duration="9331000" />
     </task>
     <task id="LOCAL-00001" summary="update service">
       <created>1665513268645</created>
@@ -227,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665558354239</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Update Description and DescriptionServiceImplTest">
+      <created>1665594299670</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665594299670</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +262,7 @@
     <MESSAGE value="update service impl" />
     <MESSAGE value="Add UserServiceImplTest and ProjectServiceImplTest" />
     <MESSAGE value="Add Some Sevice Test" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Some Sevice Test" />
+    <MESSAGE value="Update Description and DescriptionServiceImplTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update Description and DescriptionServiceImplTest" />
   </component>
 </project>
