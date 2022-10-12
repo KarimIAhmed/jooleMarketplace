@@ -15,7 +15,7 @@ public class Project {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<ProjectProduct> projectProductSet;
 
     public Project() {

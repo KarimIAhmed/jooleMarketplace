@@ -23,7 +23,6 @@ public class Description {
     @OneToOne(mappedBy="description",
             cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
                     CascadeType.REFRESH})
-    @JsonIgnore
     private Product product;
 
 

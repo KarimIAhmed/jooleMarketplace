@@ -3,6 +3,7 @@ package com.example.joole.service.impl;
 import com.example.joole.model.ProductType;
 import com.example.joole.repository.ProductTypeRepository;
 import com.example.joole.service.ProductTypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @Service
 public class ProductTypeServiceImpl implements ProductTypeService {
 
+    @Autowired
     private ProductTypeRepository productTypeRepository;
 
     public ProductType saveProductType(ProductType productType){

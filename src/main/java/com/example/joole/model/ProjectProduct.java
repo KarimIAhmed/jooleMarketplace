@@ -54,8 +54,8 @@ public class ProjectProduct {
     public String toString() {
         return "ProjectProduct{" +
                 "projectProductId=" + projectProductId +
-                ", project=" + project +
-                ", product=" + product +
+                ", projectId=" + project.getProjectId() +
+                ", productId=" + product.getId() +
                 '}';
     }
 }
