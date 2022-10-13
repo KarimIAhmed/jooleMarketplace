@@ -22,7 +22,7 @@ public class DescriptionServiceImpl implements DescriptionService {
         return descriptionRepository.findAll();
     }
 
-    public Description findDescriptionById(Long Id){
+    public Description findDescriptionById(long Id){
         return descriptionRepository.findById(Id).orElse(null);
     }
 

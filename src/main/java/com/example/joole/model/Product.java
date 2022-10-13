@@ -16,17 +16,17 @@ public class Product {
     @Column(name = "certification")
     private String certification;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<ProjectProduct> projectProductSet;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "description_id",referencedColumnName = "id")
     private Description description;
 
-    @OneToOne(cascade = CascadeType.ALL,targetEntity = TechnicalDetail.class)
+    @OneToOne(cascade = CascadeType.ALL,targetEntity = TechnicalDetail.class,fetch = FetchType.EAGER)
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinColumn(name = "prodType_id",referencedColumnName = "id")
     private ProductType productType;
 

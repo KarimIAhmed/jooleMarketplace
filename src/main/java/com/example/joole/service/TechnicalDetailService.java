@@ -8,6 +8,6 @@ import java.util.List;
 public interface TechnicalDetailService {
     TechnicalDetail createTechnicalDetail(TechnicalDetail technicalDetail);
     List<TechnicalDetail> findTechnicalDetail();
-    TechnicalDetail findTechnicalDetailById(Long Id);
+    TechnicalDetail findTechnicalDetailById(long Id);
     String deleteTechnicalDetail(long id);
 }

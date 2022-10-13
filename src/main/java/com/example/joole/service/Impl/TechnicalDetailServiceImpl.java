@@ -21,7 +21,7 @@ public class TechnicalDetailServiceImpl implements TechnicalDetailService {
         return technicalDetailRepository.findAll();
     }
 
-    public TechnicalDetail findTechnicalDetailById(Long Id){
+    public TechnicalDetail findTechnicalDetailById(long Id){
         return technicalDetailRepository.findById(Id).orElse(null);
     }
 

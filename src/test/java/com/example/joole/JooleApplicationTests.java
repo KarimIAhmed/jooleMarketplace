@@ -19,19 +19,6 @@ class JooleApplicationTests {
     void contextLoads() {
     }
 
-    @Test
-    public void userServiceTest(){
 
-        userService.createUser(3);
-
-        System.out.println(userService.getUser());
-    }
-
-    @Test
-    public void projectServiceTest(){
-        projectService.createProject(userService.findOneById(1L));
-
-        System.out.println(projectService.getProject());
-    }
 
 }
