@@ -20,7 +20,7 @@ public class Description {
     @Column(name = "model")
     private String model;
 
-    @OneToOne(mappedBy="description",
+    @OneToOne(mappedBy="description",fetch = FetchType.EAGER,
             cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
                     CascadeType.REFRESH})
     @JsonIgnore

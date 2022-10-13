@@ -7,6 +7,6 @@ import java.util.List;
 public interface DescriptionService {
     Description createDescription(Description description);
     List<Description> findDescription();
-    Description findDescriptionById(Long Id);
+    Description findDescriptionById(long Id);
     String deleteDescription(long id);
 }

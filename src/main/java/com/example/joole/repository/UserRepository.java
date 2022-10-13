@@ -1,12 +1,17 @@
 package com.example.joole.repository;
 
-import com.example.joole.model.Product;
+import com.example.joole.model.Project;
 import com.example.joole.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findById(long id);
-    User findByIdAndUserType(long id,String userType);
+public interface UserRepository extends JpaRepository<User,Long> {
+    Optional<List<User>> findByUserName(String username);
+    Optional<List<User>> findByUserType(String userType);
+    Optional<List<User>> findByUserProject(Set<Project> userProject);
+
 }

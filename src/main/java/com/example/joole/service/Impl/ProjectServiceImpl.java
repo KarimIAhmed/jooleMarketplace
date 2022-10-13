@@ -1,39 +1,32 @@
 package com.example.joole.service.Impl;
 
 import com.example.joole.model.Project;
-import com.example.joole.model.User;
 import com.example.joole.repository.ProjectRepository;
+import com.example.joole.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class ProjectServiceImpl {
+public class ProjectServiceImpl implements ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public Project findProjectById(Long id){
-        return projectRepository.findById(id).orElse(null);
-    }
-
-    public void createProject(User user){
-        Project project = new Project();
-        project.setUser(user);
-
-        projectRepository.save(project);
-    }
-
-    public Project saveProject(Project project){
+    public Project createProject(Project project){
         return projectRepository.save(project);
     }
 
-    public List<Project> getProject(){
+    public List<Project> findProject(){
         return projectRepository.findAll();
+    }
+
+    public Project findProjectById(long Id){
+        return projectRepository.findById(Id).orElse(null);
     }
 
     public String deleteProject(long id){
         projectRepository.deleteById(id);
-        return "product " + id + " has been removed";
+        return "Project " + id + " has been removed";
     }
 }
