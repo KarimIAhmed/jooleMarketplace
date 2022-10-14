@@ -12,6 +12,6 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User,Long> {
     Optional<List<User>> findByUserName(String username);
     Optional<List<User>> findByUserType(String userType);
-    Optional<List<User>> findByUserProject(Set<Project> userProject);
+    Optional<List<User>> findByUserProjectIn(Set<Project> userProject);
 
 }

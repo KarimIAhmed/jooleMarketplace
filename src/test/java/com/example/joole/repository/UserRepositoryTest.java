@@ -33,15 +33,15 @@ class UserRepositoryTest {
         System.out.println(userList);
         Assertions.assertNotNull(userList);
     }
-/*
+
     @Test
     void findByUserProject() {
         Project project=new Project();
         project.setProjectId(3L);
         Set<Project> set= new HashSet<>();
         set.add(project);
-        List<User> userList = userRepository.findByUserProject(set).orElse(null);
+        List<User> userList = userRepository.findByUserProjectIn(set).orElse(null);
         System.out.println(userList);
         Assertions.assertNotNull(userList);
-    }*/
+    }
 }

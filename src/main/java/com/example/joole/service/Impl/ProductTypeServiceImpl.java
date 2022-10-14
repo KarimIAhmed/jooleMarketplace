@@ -22,7 +22,7 @@ public class ProductTypeServiceImpl implements ProductTypeService {
     }
 
     @Override
-    public ProductType findProductTypeById(Long Id) {
+    public ProductType findProductTypeById(long Id) {
          return productTypeRepository.findById(Id).orElse(null);
     }
 

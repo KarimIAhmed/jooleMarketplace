@@ -44,6 +44,6 @@ class TechnicalDetailServiceTest {
         technicalDetail.setId(3);
         technicalDetailService.createTechnicalDetail(technicalDetail);
         technicalDetailService.deleteTechnicalDetail(technicalDetail.getId());
-        Assertions.assertNull(technicalDetailService.findTechnicalDetailById(99999L));
+        Assertions.assertNull(technicalDetailService.findTechnicalDetailById(3L));
     }
 }

@@ -108,9 +108,9 @@ public class Product {
                 ", productBrand='" + productBrand + '\'' +
                 ", certification='" + certification + '\'' +
                 ", projectProductSet=" + projectProductSet +
-                ", description=" + description +
-                ", technicalDetails=" + technicalDetail +
-                ", productType=" + productType +
+                ", description=" + description.getId() +
+                ", technicalDetails=" + technicalDetail.getId() +
+                ", productType=" + productType.getId() +
                 '}';
     }
 }

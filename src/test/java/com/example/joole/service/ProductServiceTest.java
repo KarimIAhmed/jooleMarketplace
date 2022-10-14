@@ -40,9 +40,9 @@ class ProductServiceTest {
     @Test
     void deleteProduct() {
         Product product=new Product();
-        product.setId(4);
+        product.setId(3);
         productService.createProduct(product);
         productService.deleteProduct(product.getId());
-        Assertions.assertNull(productService.findProductById(99999L));
+        Assertions.assertNull(productService.findProductById(3));
     }
 }

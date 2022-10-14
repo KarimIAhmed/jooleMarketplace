@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
         return productRepository.findAll();
     }
 
-    public Product findProductById(Long Id) {
+    public Product findProductById(long Id) {
         return productRepository.findById(Id).orElse(null);
     }
 

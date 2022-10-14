@@ -34,15 +34,15 @@ class DescriptionServiceTest {
         Description description=new Description();
         description.setId(1);
         descriptionService.createDescription(description);
-        Assertions.assertNotNull(descriptionService.findDescriptionById(1));
+        Assertions.assertNotNull(descriptionService.findDescriptionById(1L));
     }
 
     @Test
     void deleteDescription() {
         Description description=new Description();
-        description.setId(4);
+        description.setId(2);
         descriptionService.createDescription(description);
         descriptionService.deleteDescription(description.getId());
-        Assertions.assertNull(descriptionService.findDescriptionById(99999));
+        Assertions.assertNull(descriptionService.findDescriptionById(2L));
     }
 }

@@ -39,9 +39,9 @@ class ProjectServiceTest {
     @Test
     void deleteProject() {
         Project project=new Project();
-        project.setProjectId(99999L);
+        project.setProjectId(3L);
         projectService.createProject(project);
         projectService.deleteProject(project.getProjectId());
-        Assertions.assertNull(projectService.findProjectById(99999L));
+        Assertions.assertNull(projectService.findProjectById(3));
     }
 }

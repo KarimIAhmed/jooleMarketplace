@@ -43,6 +43,6 @@ class ProductTypeServiceTest {
         productType.setId(3);
         productTypeService.createProductType(productType);
         productTypeService.deleteProductType(productType.getId());
-        Assertions.assertNull(productTypeService.findProductTypeById(99999L));
+        Assertions.assertNull(productTypeService.findProductTypeById(3));
     }
 }
