@@ -6,14 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class DescriptionServiceTest {
 
     @Autowired
     private DescriptionService descriptionService;
-
     @Test
     void createDescription() {
         Description description=new Description();
@@ -40,9 +37,9 @@ class DescriptionServiceTest {
     @Test
     void deleteDescription() {
         Description description=new Description();
-        description.setId(2);
+        description.setModel("testing id");
         descriptionService.createDescription(description);
         descriptionService.deleteDescription(description.getId());
-        Assertions.assertNull(descriptionService.findDescriptionById(2L));
+        Assertions.assertNull(descriptionService.findDescriptionById(description.getId()));
     }
 }

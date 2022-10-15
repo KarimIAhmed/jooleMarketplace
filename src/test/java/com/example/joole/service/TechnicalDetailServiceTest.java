@@ -1,13 +1,11 @@
 package com.example.joole.service;
 
-import com.example.joole.model.Product;
 import com.example.joole.model.TechnicalDetail;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class TechnicalDetailServiceTest {
@@ -41,9 +39,9 @@ class TechnicalDetailServiceTest {
     @Test
     void deleteTechnicalDetail() {
         TechnicalDetail technicalDetail=new TechnicalDetail();
-        technicalDetail.setId(3);
+        technicalDetail.setPower(2);
         technicalDetailService.createTechnicalDetail(technicalDetail);
         technicalDetailService.deleteTechnicalDetail(technicalDetail.getId());
-        Assertions.assertNull(technicalDetailService.findTechnicalDetailById(3L));
+        Assertions.assertNull(technicalDetailService.findTechnicalDetailById(technicalDetail.getId()));
     }
 }

@@ -1,13 +1,11 @@
 package com.example.joole.service;
 
-import com.example.joole.model.Product;
 import com.example.joole.model.ProductType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class ProductTypeServiceTest {
@@ -40,9 +38,9 @@ class ProductTypeServiceTest {
     @Test
     void deleteProductType() {
         ProductType productType=new ProductType();
-        productType.setId(3);
+        productType.setAccessories("test id");
         productTypeService.createProductType(productType);
         productTypeService.deleteProductType(productType.getId());
-        Assertions.assertNull(productTypeService.findProductTypeById(3));
+        Assertions.assertNull(productTypeService.findProductTypeById(productType.getId()));
     }
 }

@@ -9,11 +9,11 @@ public class ProjectProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectProductId;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Project.class)
     @JoinColumn(name = "project_id")
     private Project project;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name = "id")
     private Product product;
 

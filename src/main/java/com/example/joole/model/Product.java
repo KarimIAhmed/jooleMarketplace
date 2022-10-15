@@ -1,5 +1,7 @@
 package com.example.joole.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -19,15 +21,18 @@ public class Product {
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private Set<ProjectProduct> projectProductSet;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = Description.class)
     @JoinColumn(name = "description_id",referencedColumnName = "id")
+    @JsonIgnore
     private Description description;
 
     @OneToOne(cascade = CascadeType.ALL,targetEntity = TechnicalDetail.class,fetch = FetchType.EAGER)
+    @JsonIgnore
     private TechnicalDetail technicalDetail;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER,targetEntity = ProductType.class)
     @JoinColumn(name = "prodType_id",referencedColumnName = "id")
+    @JsonIgnore
     private ProductType productType;
 
     public Product() {
@@ -108,9 +113,9 @@ public class Product {
                 ", productBrand='" + productBrand + '\'' +
                 ", certification='" + certification + '\'' +
                 ", projectProductSet=" + projectProductSet +
-                ", description=" + description.getId() +
-                ", technicalDetails=" + technicalDetail.getId() +
-                ", productType=" + productType.getId() +
+                ", description=" + description +
+                ", technicalDetails=" + technicalDetail +
+                ", productType=" + productType +
                 '}';
     }
 }
