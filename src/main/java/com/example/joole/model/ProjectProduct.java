@@ -7,31 +7,31 @@ import javax.persistence.*;
 public class ProjectProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long projectProductId;
+    private Long id;
 
     @ManyToOne(targetEntity = Project.class)
     @JoinColumn(name = "project_id")
     private Project project;
 
     @ManyToOne(targetEntity = Product.class)
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     public ProjectProduct() {
     }
 
-    public ProjectProduct(Long projectProductId, Project project, Product product) {
-        this.projectProductId = projectProductId;
+    public ProjectProduct(Long id, Project project, Product product) {
+        this.id = id;
         this.project = project;
         this.product = product;
     }
 
-    public Long getProjectProductId() {
-        return projectProductId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProjectProductId(Long projectProductId) {
-        this.projectProductId = projectProductId;
+    public void setId(Long Id) {
+        this.id = id;
     }
 
     public Project getProject() {
@@ -53,7 +53,7 @@ public class ProjectProduct {
     @Override
     public String toString() {
         return "ProjectProduct{" +
-                "projectProductId=" + projectProductId +
+                "Id=" + id +
                 ", project=" + project +
                 ", product=" + product +
                 '}';

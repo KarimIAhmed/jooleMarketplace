@@ -1,5 +1,7 @@
 package com.example.joole.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,7 +20,7 @@ public class User {
 
     @Column(name = "user_password")
     private String userPassword;
-
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Project> userProject;
 

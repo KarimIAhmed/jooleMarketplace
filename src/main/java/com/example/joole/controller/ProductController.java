@@ -5,6 +5,8 @@ import com.example.joole.model.ProductType;
 import com.example.joole.service.ProductService;
 import com.example.joole.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +20,12 @@ public class ProductController {
     private ProductTypeService productTypeService;
 
     @GetMapping("/products")
-    public List<Product> getAllProducts(){
-        return productService.findProducts();
+//    public List<Product> getAllProducts(){
+//        return productService.findProducts();
+//    }
+    public ResponseEntity<?> getAllProducts(){
+        return ResponseEntity.ok(productService.findProducts());
     }
-    /*public ResponseEntity<?> getAllProducts(){
-        return productService.findProducts();
-    }*/
 
     @GetMapping("/producttypes")
     public List<ProductType> getProductTypes(){

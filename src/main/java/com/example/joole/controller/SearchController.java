@@ -46,7 +46,7 @@ public class SearchController {
         return ResponseEntity.ok(employee);
     }
 
-    @GetMapping("/project/{id}")
+    @GetMapping("/projects/{id}")
     public ResponseEntity<Project> getProjectById(@PathVariable long id) {
         Project project = projectService.findProjectById(id);
         return ResponseEntity.ok(project);

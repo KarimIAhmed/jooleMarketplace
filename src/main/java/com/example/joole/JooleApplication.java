@@ -10,5 +10,4 @@ public class JooleApplication {
         SpringApplication.run(JooleApplication.class, args);
     }
 
-
 }

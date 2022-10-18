@@ -28,4 +28,6 @@ public class UserController {
         userService.deleteUser(id);
         return "User " + id + " has been deleted!";
     }
+
+
 }
