@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product")
+//@RequestMapping("/product")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -31,9 +31,25 @@ public class ProductController {
     }
 
 
-    @PostMapping
+    @PostMapping("/createproduct")
     public Product createProduct(@RequestBody Product product){
         return productService.createProduct(product);
     }
 
+    @PostMapping("/createproducttype")
+    public ProductType createProductType(@RequestBody ProductType productType){
+        return productTypeService.createProductType(productType);
+    }
+
+    @RequestMapping(path = "deleteproduct/{id}")
+    public String deleteProduct(@PathVariable long id) {
+        productService.deleteProduct(id);
+        return "Product " + id + " has been deleted!";
+    }
+
+    @RequestMapping(path = "deleteproducttype/{id}")
+    public String deleteProductType(@PathVariable long id) {
+        productTypeService.deleteProductType(id);
+        return "Product Type " + id + " has been deleted!";
+    }
 }

@@ -3,14 +3,12 @@ package com.example.joole.controller;
 import com.example.joole.model.User;
 import com.example.joole.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
     @Autowired
@@ -20,5 +18,14 @@ public class UserController {
     public List<User> getUsers(){
         return userService.findUser();
     }
+    @PostMapping("/createuser")
+    public User createUser(@RequestBody User user) {
+        return userService.createUser(user);
+    }
 
+    @RequestMapping(path = "deleteuser/{id}")
+    public String deleteUser(@PathVariable long id) {
+        userService.deleteUser(id);
+        return "User " + id + " has been deleted!";
+    }
 }
