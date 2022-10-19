@@ -1,6 +1,8 @@
 package com.example.joole.controller;
 
+import com.example.joole.model.Product;
 import com.example.joole.model.Project;
+import com.example.joole.service.ProductService;
 import com.example.joole.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +15,9 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/projects")
-    public ResponseEntity<?> getProjects(){
-        return ResponseEntity.ok(projectService.findProject());
-    }
+    @Autowired
+    private ProductService productService;
+
 
     @PostMapping("/createproject")
     public ResponseEntity<?> createProject(@RequestBody Project project) {
@@ -28,4 +29,13 @@ public class ProjectController {
         projectService.deleteProject(id);
         return ResponseEntity.ok("Project " + id + " has been deleted!");
     }
+
+    //addProductToProject(Project, Product)
+    @RequestMapping("/addproducttoproject")
+    public ResponseEntity<?> addProductToProject(Project project,Product product){
+        return null;
+    }
+    //deleteProductFromProject
+    //updateProductFromProject
+    //getProductListFromProject
 }

@@ -14,10 +14,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/users")
-    public ResponseEntity<?> getUsers(){
-        return ResponseEntity.ok(userService.findUser());
-    }
     @PostMapping("/createuser")
     public ResponseEntity<?> createUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.createUser(user));
@@ -29,5 +25,5 @@ public class UserController {
         return ResponseEntity.ok("User " + id + " has been deleted!");
     }
 
-
+    //@RequestMapping(path="/")
 }

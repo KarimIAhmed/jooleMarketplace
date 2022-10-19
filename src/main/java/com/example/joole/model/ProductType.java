@@ -37,7 +37,7 @@ public class ProductType {
 
     }
 
-    public ProductType(long id, String application, String type, String mountingLocation, String accessories, String model_year, Product product) {
+    public ProductType(long id, String application, String type, String mountingLocation, String accessories, int modelYear, Product product) {
         this.id = id;
         this.application = application;
         this.type = type;
@@ -87,11 +87,11 @@ public class ProductType {
         this.accessories = accessories;
     }
 
-    public int getmodelYear() {
+    public int getModelYear() {
         return modelYear;
     }
 
-    public void setmodelYear(int modelYear) {
+    public void setModelYear(int modelYear) {
         this.modelYear = modelYear;
     }
 

@@ -15,7 +15,7 @@ class ProjectProductServiceTest {
     @Test
     void createProjectProduct() {
         ProjectProduct projectProduct=new ProjectProduct();
-        projectProduct.setProjectProductId(1L);
+        projectProduct.setId(1L);
         projectProductService.createProjectProduct(projectProduct);
         System.out.println(projectProduct);
         Assertions.assertNotNull(projectProductService);
@@ -30,17 +30,17 @@ class ProjectProductServiceTest {
     @Test
     void findProjectProductById() {
         ProjectProduct projectProduct=new ProjectProduct();
-        projectProduct.setProjectProductId(4L);
+        projectProduct.setId(4L);
         projectProductService.createProjectProduct(projectProduct);
-        Assertions.assertNotNull(projectProductService.findProjectProductById(projectProduct.getProjectProductId()));
+        Assertions.assertNotNull(projectProductService.findProjectProductById(projectProduct.getId()));
     }
 
     @Test
     void deleteProjectProduct() {
         ProjectProduct projectProduct=new ProjectProduct();
-        projectProduct.setProjectProductId(4L);
+        projectProduct.setId(4L);
         projectProductService.createProjectProduct(projectProduct);
-        projectProductService.deleteProjectProduct(projectProduct.getProjectProductId());
+        projectProductService.deleteProjectProduct(projectProduct.getId());
         Assertions.assertNull(projectProductService.findProjectProductById(5));
     }
 }
