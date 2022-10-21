@@ -26,6 +26,9 @@ public class DescriptionServiceImpl implements DescriptionService {
         return descriptionRepository.findById(Id).orElse(null);
     }
 
+    public List<Description> findBySeries(String series) {
+        return descriptionRepository.findBySeries(series).orElse(null);
+    }
     public String deleteDescription(long id){
         descriptionRepository.deleteById(id);
         return "description " + id + " has been removed";

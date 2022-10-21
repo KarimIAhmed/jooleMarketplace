@@ -9,4 +9,5 @@ public interface DescriptionService {
     List<Description> findDescription();
     Description findDescriptionById(long Id);
     String deleteDescription(long id);
+    List<Description> findBySeries(String series);
 }

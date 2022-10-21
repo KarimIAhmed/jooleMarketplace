@@ -27,6 +27,9 @@ public class ProjectProductServiceImpl implements ProjectProductService {
         return projectProductRepository.findById(Id).orElse(null);
     }
 
+    public ProjectProduct findProjectProductByProductId(long id){
+        return projectProductRepository.findProjectProductByProductId(id);
+    }
     public String deleteProjectProduct(long id){
         projectProductRepository.deleteById(id);
         return "Project Product " + id + " has been removed";

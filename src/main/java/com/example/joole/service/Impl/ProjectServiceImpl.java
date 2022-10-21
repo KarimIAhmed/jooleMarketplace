@@ -1,5 +1,7 @@
 package com.example.joole.service.Impl;
 
+import com.example.joole.model.Description;
+import com.example.joole.model.Product;
 import com.example.joole.model.Project;
 import com.example.joole.repository.ProjectRepository;
 import com.example.joole.service.ProjectService;
@@ -29,4 +31,6 @@ public class ProjectServiceImpl implements ProjectService {
         projectRepository.deleteById(id);
         return "Project " + id + " has been removed";
     }
+
+
 }

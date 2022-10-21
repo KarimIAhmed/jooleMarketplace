@@ -1,5 +1,7 @@
 package com.example.joole.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,10 +13,12 @@ public class ProjectProduct {
 
     @ManyToOne(targetEntity = Project.class)
     @JoinColumn(name = "project_id")
+    @JsonIgnore
     private Project project;
 
     @ManyToOne(targetEntity = Product.class)
     @JoinColumn(name = "product_id")
+    @JsonIgnore
     private Product product;
 
     public ProjectProduct() {

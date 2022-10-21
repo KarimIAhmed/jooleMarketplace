@@ -1,20 +1,11 @@
 package com.example.joole.controller;
 
-import com.example.joole.model.Product;
-import com.example.joole.model.ProductType;
-import com.example.joole.model.Project;
-import com.example.joole.model.User;
-import com.example.joole.service.ProductService;
-import com.example.joole.service.ProductTypeService;
-import com.example.joole.service.ProjectService;
-import com.example.joole.service.UserService;
+import com.example.joole.model.*;
+import com.example.joole.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +19,19 @@ public class SearchController {
     private ProjectService projectService;
 
     @Autowired
+    private TechnicalDetailService technicalDetailService;
+
+    @Autowired
     private ProductService productService;
 
     @Autowired
     private ProductTypeService productTypeService;
+
+    @Autowired
+    private DescriptionService descriptionService;
+
+    @Autowired
+    private ProjectProductService projectProductService;
 
     @GetMapping("/projects")
     public ResponseEntity<?> getProjects(){
@@ -77,105 +77,114 @@ public class SearchController {
         return ResponseEntity.ok(project);
     }
 
-    @RequestMapping(path = "getproductbybrand/{productBrand}")
+    @RequestMapping(path = "/getproductbybrand/{productBrand}")
     public ResponseEntity<?> getProductByBrand(@PathVariable String productBrand) {
-        List<Product> list=productService.findProducts();
-        List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getProductBrand().equals(productBrand)) returnList.add(prod);
-        }
-        return ResponseEntity.ok(returnList);
+        List<Product> productList = productService.findByProductBrand(productBrand);
+        if (productList.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with brand does not exist!");
+        return ResponseEntity.ok(productList);
     }
 
-    @RequestMapping(path = "getproductbycertification/{certification}")
+    @RequestMapping(path = "/getproductbycertification/{certification}")
     public ResponseEntity<?> getProductByCertification(@PathVariable String certification) {
-        List<Product> list=productService.findProducts();
+        List<Product> productList = productService.findByProductCertification(certification);
+        if (productList.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product with certification does not exist!");
+        return ResponseEntity.ok(productList);
+    }
+
+    @RequestMapping(path = "/getproductbyseries")
+    public ResponseEntity<?> getBySeries(@RequestParam(name = "series") String series) {
+        List<Description> descriptionList=descriptionService.findBySeries(series);
+
+        if(descriptionList.isEmpty()) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("series not found!");
+
+        List<Product> productList= new ArrayList<>();
+
+        for( Description description : descriptionList){
+            Product product = productService.findProductByDescription(description);
+            if (product != null) {
+                productList.add(product);
+            }
+        }
+        return ResponseEntity.ok(productList);
+    }
+
+    @GetMapping("/getProductByDescriptionIdAndTechnicalDetailIdAndProductTypeId")
+    public ResponseEntity<?> getProductByDescriptionAndTechnicalDetailAndProductType(@RequestParam(name = "descriptionId") Long descriptionId,
+                                                                                     @RequestParam(name = "technicalDetailId") Long technicalDetailId,
+                                                                                     @RequestParam(name = "productTypeId") Long productTypeId){
+        Product product = productService.findProductByDescriptionIdAndTechnicalDetailIdAndProductTypeId(descriptionId, technicalDetailId, productTypeId);
+        if (product == null){
+            return new ResponseEntity<>(String.format("There is no product with descriptionId: %s, TechnicalDetailId: %s and ProductTypeId: %s", descriptionId, technicalDetailId, productTypeId), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
+    //Status 500
+    @GetMapping(path = "/getproductbyairflow")
+    public ResponseEntity<?> getByAirflow(@RequestParam(name = "airflow") int airflow) {
+        List<Product> productList=productService.findProducts();
         List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getCertification().equals(certification)) returnList.add(prod);
+        for(Product product:productList){
+            if(product.getTechnicalDetails()!=null && product.getTechnicalDetails().getAirflow()==airflow) {
+                returnList.add(product);
+            }
         }
+
         return ResponseEntity.ok(returnList);
     }
-    @RequestMapping(path = "getproductbymanufacturer/{manufacturer}")
-    public ResponseEntity<?> getByManufacturer(@PathVariable String manufacturer) {
-        List<Product> list=productService.findProducts();
+
+    @RequestMapping(path = "/getproductbypower")
+    public ResponseEntity<?> getByModel(@RequestParam(name = "power") int power) {
+        List<Product> productList=productService.findProducts();
         List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getDescription().getManufacturer().equals(manufacturer)) returnList.add(prod);
+        for(Product product:productList){
+            if(product.getTechnicalDetails()!=null && product.getTechnicalDetails().getPower()==power) {
+                returnList.add(product);
+            }
         }
         return ResponseEntity.ok(returnList);
     }
 
-    @RequestMapping(path = "getproductbyseries/{series}")
-    public ResponseEntity<?> getBySeries(@PathVariable String series) {
-        List<Product> list=productService.findProducts();
-        List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getDescription().getSeries().equals(series)) returnList.add(prod);
+    //STATUS 500
+    @RequestMapping(path = "/getproducttypebyyear")
+    public ResponseEntity<?> getByYear(@RequestParam(name = "year") int year){
+    List<Product> productList=productService.findProducts();
+    List<Product> returnList=new ArrayList<>();
+    for(Product product:productList){
+            if(product.getTechnicalDetails()!=null && product.getProductType().getModelYear()==year) {
+                returnList.add(product);
+            }
         }
         return ResponseEntity.ok(returnList);
     }
 
-    @RequestMapping(path = "getproductbymodel/{model}")
-    public ResponseEntity<?> getByModel(@PathVariable String model) {
-        List<Product> list=productService.findProducts();
-        List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getDescription().getModel().equals(model)) returnList.add(prod);
-        }
-        return ResponseEntity.ok(returnList);
-    }
-    @RequestMapping(path = "getproductbyairflow/{airflow}")
-    public ResponseEntity<?> getByAirflow(@PathVariable int airflow) {
-        List<Product> list=productService.findProducts();
-        List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getTechnicalDetails().getAirflow()==airflow) returnList.add(prod);
-        }
-        return ResponseEntity.ok(returnList);
+
+    @RequestMapping(path = "/getprojectbyuser/{userId}")
+    public ResponseEntity<?> getProjectByUser(@PathVariable long userId){
+        if(userService.findUserById(userId)==null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist!");
+        if(userService.findUserById(userId).getUserProject()!=null) return ResponseEntity.ok(userService.findUserById(userId).getUserProject());
+        else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project does not exist!");
     }
 
-    @RequestMapping(path = "getproductbypower/{power}")
-    public ResponseEntity<?> getByModel(@PathVariable int power) {
-        List<Product> list=productService.findProducts();
-        List<Product> returnList=new ArrayList<>();
-        for(Product prod:list){
-            if(prod.getTechnicalDetails().getPower()==power) returnList.add(prod);
-        }
-        return ResponseEntity.ok(returnList);
-    }
-    @RequestMapping(path = "getproducttypebyyear/{year}")
-    public ResponseEntity<?> getByYear(@PathVariable int year) {
-        List<ProductType> list=productTypeService.findProductTypes();
-        List<ProductType> returnList=new ArrayList<>();
-        for(ProductType prod:list){
-            if(prod.getModelYear()==year) returnList.add(prod);
-        }
-        return ResponseEntity.ok(returnList);
-    }
-    @RequestMapping(path = "getprojectbyuser/{user}")
-    public ResponseEntity<?> getProjectByUser(@PathVariable User user) {
-        List<User> list=userService.findUser();
-        for(User user1:list){
-            if(user1==user) return ResponseEntity.ok(user1.getUserProject());
-        }
-
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user does not exist");
+    @RequestMapping(path = "/getuserbyproject/{projectId}")
+    public ResponseEntity<?> getUserByProject(@PathVariable long projectId) {
+        if(projectService.findProjectById(projectId)==null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project does not exist!");
+        if(projectService.findProjectById(projectId).getUser()!=null) return ResponseEntity.ok(projectService.findProjectById(projectId).getUser());
+        else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist!");
     }
 
-    @RequestMapping(path = "getuserbyproject/{project}")
-    public ResponseEntity<?> getUserByProject(@PathVariable Project project) {
-        List<Project> list=projectService.findProject();
-        for(Project project1:list){
-            if(project1==project) ResponseEntity.ok(project1.getUser());
-        }
+    @RequestMapping(path = "/getproductsfromproject/{projectId}")
+    public ResponseEntity<?> getProductListFromProject(@PathVariable long projectId){
+        return ResponseEntity.ok(projectService.findProjectById(projectId));
+    }
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Project does not exist");
+    @RequestMapping("/getprojectbyproductid/{productId}")
+    public ResponseEntity<?> findProjectProductByProductId(@PathVariable long productId){
+        ProjectProduct projectProduct=projectProductService.findProjectProductByProductId(productId);
+        if(projectProduct!=null) return ResponseEntity.ok(projectProduct.getProject());
+        else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product not found");
     }
 
 
-    // getProductsByProductType
-    // getProductsByAirFlow
-    // getProductByDescritionStartsWith
-    // advanceSearch(Description, ProductType, TechnicalDetail)
 }

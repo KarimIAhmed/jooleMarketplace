@@ -9,4 +9,5 @@ public interface ProjectProductService {
     List<ProjectProduct> findProjectProduct();
     ProjectProduct findProjectProductById(long Id);
     String deleteProjectProduct(long id);
+    ProjectProduct findProjectProductByProductId(long id);
 }

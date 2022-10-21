@@ -2,26 +2,35 @@ package com.example.joole.controller;
 
 import com.example.joole.model.Product;
 import com.example.joole.model.Project;
+import com.example.joole.model.ProjectProduct;
 import com.example.joole.service.ProductService;
+import com.example.joole.service.ProjectProductService;
 import com.example.joole.service.ProjectService;
+import com.example.joole.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
-//@RequestMapping("/project")
 public class ProjectController {
 
     @Autowired
     private ProjectService projectService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private ProductService productService;
+
+    @Autowired
+    private ProjectProductService projectProductService;
 
 
     @PostMapping("/createproject")
-    public ResponseEntity<?> createProject(@RequestBody Project project) {
-        return ResponseEntity.ok(projectService.createProject(project));
+    public ResponseEntity<?> createProject(@RequestParam(name = "projectId") long projectId) {
+        return ResponseEntity.ok(projectService.createProject(new Project(projectId,null,null)));
     }
 
     @RequestMapping(path = "deleteproject/{id}")
@@ -30,12 +39,28 @@ public class ProjectController {
         return ResponseEntity.ok("Project " + id + " has been deleted!");
     }
 
-    //addProductToProject(Project, Product)
-    @RequestMapping("/addproducttoproject")
-    public ResponseEntity<?> addProductToProject(Project project,Product product){
-        return null;
+    @PutMapping("/addproducttoprojectbyid")
+    public ResponseEntity<?> addProductToProjectById(@RequestParam(name = "projectid") Long projectId,
+                                                     @RequestParam(name = "productId") Long productId) {
+        Project project=projectService.findProjectById(projectId);
+        Product product=productService.findProductById(productId);
+        ProjectProduct projectProduct=new ProjectProduct(5L,project,product);
+        projectProductService.createProjectProduct(projectProduct);
+        return ResponseEntity.ok("produc was added to project with id" + projectId);
     }
-    //deleteProductFromProject
-    //updateProductFromProject
-    //getProductListFromProject
+
+    @DeleteMapping(path = "deleteproductfromproject")
+    public ResponseEntity<?> deleteProductFromProject(@RequestParam(name = "projectId") long projectId,
+                                                      @RequestParam(name = "productId") long productId) {
+        ProjectProduct p=projectProductService.findProjectProductByProductId(productId);
+        projectProductService.deleteProjectProduct(p.getId());
+        return ResponseEntity.ok("product has been removed from project with ID " + projectId);
+    }
+    @PutMapping(path="/updateprojectuser")
+    public ResponseEntity<?> updateProjectUser(@RequestParam(name = "projectId") long projectId,
+                                              @RequestParam(name = "userId") long userId){
+        Project project=projectService.findProjectById(projectId);
+        project.setUser(userService.findUserById(userId));
+        return ResponseEntity.ok("Project user has been updated!");
+    }
 }

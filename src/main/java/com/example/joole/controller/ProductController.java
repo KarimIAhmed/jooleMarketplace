@@ -2,9 +2,11 @@ package com.example.joole.controller;
 
 import com.example.joole.model.Product;
 import com.example.joole.model.ProductType;
+import com.example.joole.model.User;
 import com.example.joole.service.ProductService;
 import com.example.joole.service.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +25,74 @@ public class ProductController {
 
 
     @PostMapping("/createproduct")
-    public ResponseEntity<?> createProduct(@RequestBody Product product){
-        return ResponseEntity.ok(productService.createProduct(product));
+    public ResponseEntity<?> createProduct(@RequestParam(name = "id") long id,
+                                           @RequestParam(name = "productBrand") String productBrand,
+                                           @RequestParam(name = "certification") String certification) {
+        return ResponseEntity.ok(productService.createProduct(new Product(id,productBrand,certification,null,null,null,null)));
     }
 
     @PostMapping("/createproducttype")
-    public ResponseEntity<?> createProductType(@RequestBody ProductType productType){
-        return ResponseEntity.ok(productTypeService.createProductType(productType));
+    public ResponseEntity<?> createProductType(@RequestParam(name = "id") long id,
+                                               @RequestParam(name = "application") String application,
+                                               @RequestParam(name = "type") String type,
+                                               @RequestParam(name = "mountingLocation") String mountingLocation,
+                                               @RequestParam(name = "accessories") String accessories,
+                                               @RequestParam(name = "modelYear") int modelYear) {
+        return ResponseEntity.ok(productTypeService.createProductType(new ProductType(id,application,type,mountingLocation,accessories,modelYear,null)));
+    }
+
+    @PutMapping("/updateproductbrand")
+    public ResponseEntity<?> updateProductBrandByProductId(@RequestParam(name = "id") Long id, @RequestParam(name = "productBrand") String productBrand){
+        Product product =productService.findProductById(id);
+        if (product == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist!");
+        product.setProductBrand(productBrand);
+        return ResponseEntity.ok("Product brand has been updated!");
+    }
+
+    @PutMapping("/updatecertification")
+    public ResponseEntity<?> updateCertificationByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "certification") String certification){
+        Product product =productService.findProductById(id);
+        if (product == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Prouct does not exist!");
+        product.setCertification(certification);
+        return ResponseEntity.ok("Product certification has been updated!");
+    }
+    @PutMapping("/updateapplication")
+    public ResponseEntity<?> updateApplicationByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "application") String application){
+        ProductType productType =productTypeService.findProductTypeById(id);
+        if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
+        productType.setApplication(application);
+        return ResponseEntity.ok("Product application has been updated!");
+    }
+
+    @PutMapping("/updateaccessories")
+    public ResponseEntity<?> updateAccessoriesByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "accessories") String accessories){
+        ProductType productType =productTypeService.findProductTypeById(id);
+        if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
+        productType.setAccessories(accessories);
+        return ResponseEntity.ok("Product accessory has been updated!");
+    }
+
+    @PutMapping("/updatemodelyear")
+    public ResponseEntity<?> updateModelYearByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "modelYear") int modelYear){
+        ProductType productType =productTypeService.findProductTypeById(id);
+        if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
+        productType.setModelYear(modelYear);
+        return ResponseEntity.ok("Product model year has been updated!");
+    }
+    @PutMapping("/updatemountingLocation")
+    public ResponseEntity<?> updateMountingLocationByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "mountingLocation") String mountingLocation){
+        ProductType productType =productTypeService.findProductTypeById(id);
+        if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
+        productType.setMountingLocation(mountingLocation);
+        return ResponseEntity.ok("Product type has been updated!");
+    }
+
+    @PutMapping("/updatetype")
+    public ResponseEntity<?> updateTypeByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "type") String type){
+        ProductType productType =productTypeService.findProductTypeById(id);
+        if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
+        productType.setType(type);
+        return ResponseEntity.ok("Product type has been updated!");
     }
 
     @RequestMapping(path = "deleteproduct/{id}")
