@@ -10,7 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 
 public interface UserRepository extends JpaRepository<User,Long> {
-    Optional<List<User>> findByUserName(String username);
+    Optional<User> findByUserName(String username);
     Optional<List<User>> findByUserType(String userType);
     Optional<List<User>> findByUserProjectIn(Set<Project> userProject);
 

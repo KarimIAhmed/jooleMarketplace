@@ -24,6 +24,10 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<Project> userProject;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
     public User() {
     }
 
@@ -73,6 +77,14 @@ public class User {
 
     public void setUserProject(Set<Project> userProject) {
         this.userProject = userProject;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Role getRole() {
+        return role;
     }
 
     @Override

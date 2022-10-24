@@ -22,10 +22,11 @@ class UserRepositoryTest {
 
     @Test
     void findByUserName() {
-        List<User> userList = userRepository.findByUserName("testUser").orElse(null);
-        System.out.println(userList);
-        Assertions.assertNotNull(userList);
+       // List<User> userList = userRepository.findByUserName("testUser").orElse(null);
+        System.out.println(userRepository.findByUserName("testUser").orElse(null));
+        Assertions.assertNotNull(userRepository.findByUserName("testUser").orElse(null));
     }
+
 
     @Test
     void findByUserType() {

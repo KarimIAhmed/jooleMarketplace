@@ -1,33 +1,75 @@
 package com.example.joole.controller;
 
 import com.example.joole.model.Project;
+import com.example.joole.model.Role;
 import com.example.joole.model.User;
+import com.example.joole.service.MyUserDetailsService;
 import com.example.joole.service.ProjectService;
 import com.example.joole.service.UserService;
+import com.example.joole.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
 
 @RestController
+@RequestMapping("users")
 public class UserController {
 
+    @Autowired
+    private AuthenticationManager myAuthenticationManager;
     @Autowired
     private UserService userService;
 
     @Autowired
+    private JwtUtil jwtTokenUtil;
+
+    @Autowired
+    private MyUserDetailsService userDetailsService;
+    @Autowired
     private ProjectService projectService;
 
-    @PostMapping("/createuser")
+    @PostMapping("/createUser")
     public ResponseEntity<?> createUser(@RequestParam(name = "id") long id,
                                         @RequestParam(name = "userName") String userName,
                                         @RequestParam(name = "userType") String userType,
                                         @RequestParam(name = "userPassword") String userPassword) {
-        userService.createUser(new User(id,userName,userType,userPassword,null));
+        User user=new User(id,userName,userType,userPassword,null);
+        user.setRole(Role.USER);
+        userService.createUser(user);
+
         return ResponseEntity.ok("user has been created!");
+    }
+
+    @RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+    public ResponseEntity<?> createAuthenticationToken(@RequestParam(name="username") String username,
+                                                       @RequestParam(name="password") String password)
+        //@RequestBody User User)
+            throws Exception {
+
+        try {
+            myAuthenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username,password)//User.getUsername(), User.getPassword())
+            );
+        }
+        catch (BadCredentialsException e) {
+            throw new Exception("Incorrect username or password", e);
+        }
+
+
+        final UserDetails userDetails = userDetailsService
+                .loadUserByUsername(username);
+
+        final String jwt = jwtTokenUtil.generateToken(userDetails);
+
+        return  new ResponseEntity<>(jwt, HttpStatus.OK);
     }
 
     @PutMapping("/updateusername")

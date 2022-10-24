@@ -17,7 +17,8 @@ class UserServiceTest {
     @Test
     void createUser() {
         User user=new User();
-        user.setUserName("test");
+        user.setUserName("test101");
+        user.setUserPassword("432431");
         userService.createUser(user);
         System.out.println(user);
         Assertions.assertNotNull(userService);
