@@ -28,18 +28,18 @@ public class ProjectController {
     private ProjectProductService projectProductService;
 
 
-    @PostMapping("/createproject")
+    @PostMapping("/createProject")
     public ResponseEntity<?> createProject(@RequestParam(name = "projectId") long projectId) {
         return ResponseEntity.ok(projectService.createProject(new Project(projectId,null,null)));
     }
 
-    @RequestMapping(path = "deleteproject/{id}")
+    @RequestMapping(path = "deleteProject/{id}")
     public ResponseEntity<?> deleteProject(@PathVariable long id) {
         projectService.deleteProject(id);
         return ResponseEntity.ok("Project " + id + " has been deleted!");
     }
 
-    @PutMapping("/addproducttoprojectbyid")
+    @PutMapping("/addProductToProjectById")
     public ResponseEntity<?> addProductToProjectById(@RequestParam(name = "projectid") Long projectId,
                                                      @RequestParam(name = "productId") Long productId) {
         Project project=projectService.findProjectById(projectId);
@@ -49,14 +49,14 @@ public class ProjectController {
         return ResponseEntity.ok("produc was added to project with id" + projectId);
     }
 
-    @DeleteMapping(path = "deleteproductfromproject")
+    @DeleteMapping(path = "deleteProductFromProject")
     public ResponseEntity<?> deleteProductFromProject(@RequestParam(name = "projectId") long projectId,
                                                       @RequestParam(name = "productId") long productId) {
         ProjectProduct p=projectProductService.findProjectProductByProductId(productId);
         projectProductService.deleteProjectProduct(p.getId());
         return ResponseEntity.ok("product has been removed from project with ID " + projectId);
     }
-    @PutMapping(path="/updateprojectuser")
+    @PutMapping(path="/updateProjectUser")
     public ResponseEntity<?> updateProjectUser(@RequestParam(name = "projectId") long projectId,
                                               @RequestParam(name = "userId") long userId){
         Project project=projectService.findProjectById(projectId);

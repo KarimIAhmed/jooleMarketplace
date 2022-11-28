@@ -1,5 +1,6 @@
 package com.example.joole.service.Impl;
 
+import com.example.joole.model.Product;
 import com.example.joole.model.Project;
 import com.example.joole.model.ProjectProduct;
 import com.example.joole.repository.ProjectProductRepository;
@@ -8,6 +9,7 @@ import com.example.joole.service.ProjectProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service

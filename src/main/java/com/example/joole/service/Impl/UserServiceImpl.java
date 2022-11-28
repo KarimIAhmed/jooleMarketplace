@@ -32,6 +32,11 @@ public class UserServiceImpl implements UserService {
     public User findUserById(long Id){
         return userRepository.findById(Id).orElse(null);
     }
+
+    public Boolean findUserByUsername(String userName){
+        boolean present= userRepository.findByUserName(userName).isPresent();
+        return present;
+    }
     public String deleteUser(long id){
         userRepository.deleteById(id);
         return "User " + id + " has been removed";

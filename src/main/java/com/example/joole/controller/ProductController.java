@@ -24,24 +24,22 @@ public class ProductController {
 
 
 
-    @PostMapping("/createproduct")
-    public ResponseEntity<?> createProduct(@RequestParam(name = "id") long id,
-                                           @RequestParam(name = "productBrand") String productBrand,
+    @PostMapping("/createProduct")
+    public ResponseEntity<?> createProduct(@RequestParam(name = "productBrand") String productBrand,
                                            @RequestParam(name = "certification") String certification) {
-        return ResponseEntity.ok(productService.createProduct(new Product(id,productBrand,certification,null,null,null,null)));
+        return ResponseEntity.ok(productService.createProduct(new Product(productBrand,certification,null,null,null,null)));
     }
 
-    @PostMapping("/createproducttype")
-    public ResponseEntity<?> createProductType(@RequestParam(name = "id") long id,
-                                               @RequestParam(name = "application") String application,
+    @PostMapping("/createProductType")
+    public ResponseEntity<?> createProductType(@RequestParam(name = "application") String application,
                                                @RequestParam(name = "type") String type,
                                                @RequestParam(name = "mountingLocation") String mountingLocation,
                                                @RequestParam(name = "accessories") String accessories,
                                                @RequestParam(name = "modelYear") int modelYear) {
-        return ResponseEntity.ok(productTypeService.createProductType(new ProductType(id,application,type,mountingLocation,accessories,modelYear,null)));
+        return ResponseEntity.ok(productTypeService.createProductType(new ProductType(application,type,mountingLocation,accessories,modelYear,null)));
     }
 
-    @PutMapping("/updateproductbrand")
+    @PutMapping("/updateProductBrand")
     public ResponseEntity<?> updateProductBrandByProductId(@RequestParam(name = "id") Long id, @RequestParam(name = "productBrand") String productBrand){
         Product product =productService.findProductById(id);
         if (product == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist!");
@@ -49,14 +47,14 @@ public class ProductController {
         return ResponseEntity.ok("Product brand has been updated!");
     }
 
-    @PutMapping("/updatecertification")
+    @PutMapping("/updateCertification")
     public ResponseEntity<?> updateCertificationByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "certification") String certification){
         Product product =productService.findProductById(id);
-        if (product == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Prouct does not exist!");
+        if (product == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product does not exist!");
         product.setCertification(certification);
         return ResponseEntity.ok("Product certification has been updated!");
     }
-    @PutMapping("/updateapplication")
+    @PutMapping("/updateApplication")
     public ResponseEntity<?> updateApplicationByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "application") String application){
         ProductType productType =productTypeService.findProductTypeById(id);
         if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
@@ -64,7 +62,7 @@ public class ProductController {
         return ResponseEntity.ok("Product application has been updated!");
     }
 
-    @PutMapping("/updateaccessories")
+    @PutMapping("/updateAccessories")
     public ResponseEntity<?> updateAccessoriesByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "accessories") String accessories){
         ProductType productType =productTypeService.findProductTypeById(id);
         if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
@@ -72,14 +70,14 @@ public class ProductController {
         return ResponseEntity.ok("Product accessory has been updated!");
     }
 
-    @PutMapping("/updatemodelyear")
+    @PutMapping("/updateModelYear")
     public ResponseEntity<?> updateModelYearByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "modelYear") int modelYear){
         ProductType productType =productTypeService.findProductTypeById(id);
         if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
         productType.setModelYear(modelYear);
         return ResponseEntity.ok("Product model year has been updated!");
     }
-    @PutMapping("/updatemountingLocation")
+    @PutMapping("/updateMountingLocation")
     public ResponseEntity<?> updateMountingLocationByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "mountingLocation") String mountingLocation){
         ProductType productType =productTypeService.findProductTypeById(id);
         if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
@@ -87,7 +85,7 @@ public class ProductController {
         return ResponseEntity.ok("Product type has been updated!");
     }
 
-    @PutMapping("/updatetype")
+    @PutMapping("/updateType")
     public ResponseEntity<?> updateTypeByProductTypeId(@RequestParam(name = "id") Long id, @RequestParam(name = "type") String type){
         ProductType productType =productTypeService.findProductTypeById(id);
         if (productType == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Product type does not exist!");
@@ -95,13 +93,13 @@ public class ProductController {
         return ResponseEntity.ok("Product type has been updated!");
     }
 
-    @RequestMapping(path = "deleteproduct/{id}")
+    @RequestMapping(path = "/deleteProduct/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable long id) {
         productService.deleteProduct(id);
         return ResponseEntity.ok("Product " + id + " has been deleted!");
     }
 
-    @RequestMapping(path = "deleteproducttype/{id}")
+    @RequestMapping(path = "/deleteProductType/{id}")
     public ResponseEntity<?> deleteProductType(@PathVariable long id) {
         productTypeService.deleteProductType(id);
         return ResponseEntity.ok("Product Type " + id + " has been deleted!");

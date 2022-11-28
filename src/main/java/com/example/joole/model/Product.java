@@ -1,9 +1,9 @@
 package com.example.joole.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import java.util.Set;
+    import javax.persistence.*;
+    import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -39,8 +39,7 @@ public class Product {
 
     }
 
-    public Product(long id, String productBrand, String certification, Set<ProjectProduct> projectProductSet, Description description, TechnicalDetail technicalDetail, ProductType productType) {
-        this.id = id;
+    public Product(String productBrand, String certification, Set<ProjectProduct> projectProductSet, Description description, TechnicalDetail technicalDetail, ProductType productType) {
         this.productBrand = productBrand;
         this.certification = certification;
         this.projectProductSet = projectProductSet;

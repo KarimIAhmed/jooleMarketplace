@@ -37,8 +37,7 @@ public class ProductType {
 
     }
 
-    public ProductType(long id, String application, String type, String mountingLocation, String accessories, int modelYear, Product product) {
-        this.id = id;
+    public ProductType(String application, String type, String mountingLocation, String accessories, int modelYear, Product product) {
         this.application = application;
         this.type = type;
         this.mountingLocation = mountingLocation;

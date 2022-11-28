@@ -20,7 +20,7 @@ import java.util.Set;
 
 
 @RestController
-@RequestMapping("users")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -37,11 +37,11 @@ public class UserController {
     private ProjectService projectService;
 
     @PostMapping("/createUser")
-    public ResponseEntity<?> createUser(@RequestParam(name = "id") long id,
-                                        @RequestParam(name = "userName") String userName,
-                                        @RequestParam(name = "userType") String userType,
+    public ResponseEntity<?> createUser(@RequestParam(name = "userName") String userName,
                                         @RequestParam(name = "userPassword") String userPassword) {
-        User user=new User(id,userName,userType,userPassword,null);
+        if(userService.findUserByUsername(userName)) return new ResponseEntity<>("User already created!", HttpStatus.BAD_REQUEST);
+
+        User user=new User(userName,"user",userPassword,null);
         user.setRole(Role.USER);
         userService.createUser(user);
 
@@ -69,10 +69,10 @@ public class UserController {
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-        return  new ResponseEntity<>(jwt, HttpStatus.OK);
+        return new ResponseEntity<>(jwt, HttpStatus.OK);
     }
 
-    @PutMapping("/updateusername")
+    @PutMapping("/updateUsername")
     public ResponseEntity<?> updateUsernameByUserId(@RequestParam(name = "id") Long id, @RequestParam(name = "userName") String userName){
         User user = userService.findUserById(id);
         if (user == null){
@@ -92,7 +92,7 @@ public class UserController {
         return ResponseEntity.ok("user type has been updated!");
     }
 
-    @PutMapping("/updateuserpassword")
+    @PutMapping("/updateUserPassword")
     public ResponseEntity<?> updatePasswordByUserId(@RequestParam(name = "id") Long id, @RequestParam(name = "password") String password){
         User user = userService.findUserById(id);
         if (user == null){
@@ -104,7 +104,7 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(user), HttpStatus.OK);
     }
 
-    @RequestMapping(path = "deleteuser/{id}")
+    @RequestMapping(path = "/deleteUser/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok("User " + id + " has been deleted!");

@@ -31,8 +31,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String userName, String userType, String userPassword, Set<Project> userProject) {
-        this.id = id;
+    public User(String userName, String userType, String userPassword, Set<Project> userProject) {
         this.userName = userName;
         this.userType = userType;
         this.userPassword = userPassword;

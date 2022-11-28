@@ -64,11 +64,11 @@ public class WebSecurityConfig {
                 //Cross-origin-resource-sharing
                 .cors().and()
                 .authorizeRequests()
-                .antMatchers("/users/authenticate").anonymous()
+                .antMatchers("/users/authenticate").permitAll()
+                .antMatchers("/users").permitAll()
                 .antMatchers("/users/createUser").permitAll()
-                //.antMatchers("/users").permitAll()
-                .antMatchers("/products").hasRole("ADMIN")
-              //  .antMatchers("/users/admin/**").hasRole("ADMIN")
+                .antMatchers("/updateUsername").hasRole("ADMIN")
+                //.antMatchers("/products").permitAll()
                 .anyRequest().fullyAuthenticated();// others need to be accessed after authentication
 
 

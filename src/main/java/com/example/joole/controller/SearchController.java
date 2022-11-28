@@ -176,8 +176,14 @@ public class SearchController {
 
     @RequestMapping(path = "/getproductsfromproject/{projectId}")
     public ResponseEntity<?> getProductListFromProject(@PathVariable long projectId){
-        return ResponseEntity.ok(projectService.findProjectById(projectId));
+        List<Product> list=new ArrayList<>();
+        for(ProjectProduct projectProduct:projectProductService.findProjectProduct()){
+            if(projectProduct.getProject().getProjectId()==projectId) list.add(projectProduct.getProduct());
+        }
+        if(list.isEmpty()) return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("No products found!");
+        return ResponseEntity.ok(list);
     }
+
 
     @RequestMapping("/getprojectbyproductid/{productId}")
     public ResponseEntity<?> findProjectProductByProductId(@PathVariable long productId){
